@@ -2,7 +2,7 @@ import { useState } from "react";
 import Dropdown from "../components/Dropdown";
 import { RestaurantList } from "../models/Restaurants";
 import RestaurantCard from "../components/RestaurantCard";
-export default function Home() {
+export default function Restaurant() {
   const [isOpen, setIsOpen] = useState(false);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState<string>("");

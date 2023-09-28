@@ -1,5 +1,5 @@
+import { Rating, ThinStar } from "@smastrom/react-rating";
 import { Datum } from "../models/Restaurants";
-
 export default function RestaurantCard({ restaurant }: { restaurant: Datum }) {
   const checkRestaurantOpenStatus = (status: string) => {
     if (status === "CLOSED" || status === "CLOSING" || status.length === 0) {
@@ -12,7 +12,17 @@ export default function RestaurantCard({ restaurant }: { restaurant: Datum }) {
       <div className="flex flex-col justify-start w-full gap-2">
         <img className="h-60" src={restaurant.heroImgUrl} alt="" />
         <p className="font-semibold">{restaurant.name}</p>
-        <p>{restaurant.averageRating}</p>
+        <Rating
+          className="h-7 w-1/3"
+          value={restaurant.averageRating}
+          readOnly={true}
+          itemStyles={{
+            itemShapes: ThinStar,
+            activeFillColor: "#1e3a8a",
+            itemStrokeWidth: 1,
+            activeStrokeColor: "#1e3a8a",
+          }}
+        />
         <div className="flex flex-row justify-between text-[10px] text-slate-500">
           <div className="flex flex-row justify-start items-center">
             <p>{restaurant.establishmentTypeAndCuisineTags.shift()}</p>
