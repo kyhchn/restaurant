@@ -10,3 +10,5 @@ TODO:
 - implement login
 - change open api source or scrapping tripadvisor to get reviews
 - provide animation / transition
+
+# Please don't spam requests because it only has 15 requests left from rapidapi.
