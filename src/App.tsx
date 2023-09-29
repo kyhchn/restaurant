@@ -7,8 +7,9 @@ import "@smastrom/react-rating/style.css";
 function App() {
   return (
     <Routes>
-      <Route path="/restaurants" element={<Restaurant />} />
+      <Route path="/" element={<Restaurant />} />
       <Route path="/restaurants/:id" element={<RestaurantDetail />} />
+      <Route path="/*" element={<h1>Not Found</h1>} />
     </Routes>
   );
 }
