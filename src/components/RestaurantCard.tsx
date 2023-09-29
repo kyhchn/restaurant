@@ -1,11 +1,22 @@
 import { Rating, ThinStar } from "@smastrom/react-rating";
 import { Datum } from "../models/Restaurants";
+import { useNavigate } from "react-router-dom";
 export default function RestaurantCard({ restaurant }: { restaurant: Datum }) {
+  const navigator = useNavigate();
   const checkRestaurantOpenStatus = (status: string) => {
-    if (status === "CLOSED" || status === "CLOSING" || status.length === 0) {
+    if (status === "CLOSED" || status === "CLOSING" || status) {
       return false;
     }
     return true;
+  };
+  const learnMoreHandler = (url: string) => {
+    const splittedUrl = url.split("-");
+    splittedUrl[0] = "Restaurant_Review";
+    splittedUrl[3] = "Reviews";
+    var fixUrl = splittedUrl.join("-");
+    const postData = fixUrl.replace(".html", "")
+    console.log(postData);
+    navigator("/restaurants/"+postData);
   };
   return (
     <div className="flex flex-col justify-between gap-5">
@@ -37,13 +48,20 @@ export default function RestaurantCard({ restaurant }: { restaurant: Datum }) {
                   : "bg-red-500"
               }`}
             ></div>
-            {restaurant.currentOpenStatusCategory.length != 0
+            {restaurant.currentOpenStatusCategory
               ? restaurant.currentOpenStatusCategory
               : "CLOSED"}
           </div>
         </div>
       </div>
-      <button className="w-full bg-blue-900 py-2">
+      <button
+        className="w-full bg-blue-900 py-2"
+        onClick={() =>
+          learnMoreHandler(
+            restaurant.reviewSnippets.reviewSnippetsList.shift()!.reviewUrl
+          )
+        }
+      >
         <p className="text-center text-white text-sm">LEARN MORE</p>
       </button>
     </div>
