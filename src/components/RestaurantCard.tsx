@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 export default function RestaurantCard({ restaurant }: { restaurant: Datum }) {
   const navigator = useNavigate();
   const checkRestaurantOpenStatus = (status: string) => {
-    if (status === "CLOSED" || status === "CLOSING" || status) {
+    console.log(status);
+    if (status === "CLOSED" || status === "CLOSING" || status == null) {
       return false;
     }
     return true;
@@ -14,9 +15,9 @@ export default function RestaurantCard({ restaurant }: { restaurant: Datum }) {
     splittedUrl[0] = "Restaurant_Review";
     splittedUrl[3] = "Reviews";
     var fixUrl = splittedUrl.join("-");
-    const postData = fixUrl.replace(".html", "")
+    const postData = fixUrl.replace(".html", "");
     console.log(postData);
-    navigator("/restaurants/"+postData);
+    navigator("/restaurants/" + postData);
   };
   return (
     <div className="flex flex-col justify-between gap-5">
@@ -50,7 +51,7 @@ export default function RestaurantCard({ restaurant }: { restaurant: Datum }) {
             ></div>
             {restaurant.currentOpenStatusCategory
               ? restaurant.currentOpenStatusCategory
-              : "CLOSED"}
+              : 'CLOSED'}
           </div>
         </div>
       </div>
